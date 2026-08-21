@@ -14,6 +14,17 @@
     );
   }
 
+  // 把「路径字符串」或「对象」统一成对象，并自动用文件名当标题
+  function normalizeItem(item, key) {
+    if (typeof item === "string") {
+      const name = item.split("/").pop().replace(/\.[^.]+$/, "");
+      const obj = { title: name };
+      obj[key] = item;
+      return obj;
+    }
+    return item || {};
+  }
+
   // 生成媒体卡片
   function mediaCard(item, kind) {
     const card = document.createElement("div");
@@ -131,17 +142,17 @@
   function fillWorks() {
     const imgGrid = document.getElementById("imageGrid");
     (C.works.images || []).forEach(function (it) {
-      imgGrid.appendChild(mediaCard(it, "image"));
+      imgGrid.appendChild(mediaCard(normalizeItem(it, "file"), "image"));
     });
 
     const v3 = document.getElementById("video3dGrid");
     (C.works.video3d || []).forEach(function (it) {
-      v3.appendChild(mediaCard(it, "video"));
+      v3.appendChild(mediaCard(normalizeItem(it, "src"), "video"));
     });
 
     const vr = document.getElementById("videoRealGrid");
     (C.works.videoReal || []).forEach(function (it) {
-      vr.appendChild(mediaCard(it, "video"));
+      vr.appendChild(mediaCard(normalizeItem(it, "src"), "video"));
     });
   }
 

@@ -35,7 +35,11 @@
 > `assets/img/` 下，则写 `assets/img/hero.gif`。
 
 ### 3. 加图片作品
-把图片放进 `assets/img/`，在 `works.images` 里加一项：
+把图片放进 `assets/img/`，在 `works.images` 里加一项。**最简写法（和改首图一样方便）**：
+```js
+"assets/img/你的图.jpg"
+```
+只写路径即可，标题自动用文件名。想自定义标题/说明用完整写法：
 ```js
 { title: "作品标题", desc: "说明文字（可留空）", file: "assets/img/你的图.jpg" }
 ```
@@ -43,7 +47,11 @@
 
 ### 4. 加视频作品
 把视频放进 `assets/video/`，在 `works.video3d`（3D 渲染）或
-`works.videoReal`（实拍）里加一项：
+`works.videoReal`（实拍）里加一项。**最简写法**：
+```js
+"assets/video/你的视频.mp4"
+```
+标题自动用文件名。需封面/外链时用完整写法：
 ```js
 { title: "视频标题", desc: "说明", src: "assets/video/你的视频.mp4", poster: "", link: "" }
 ```

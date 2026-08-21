@@ -50,6 +50,12 @@ const SITE_CONFIG = {
   heroMedia: "assets/hero.gif",
 
   works: {
+    // 图片作品：两种写法都支持
+    //   最简写法（和改首图一样方便）：直接写路径字符串，标题自动取文件名
+    //     "assets/img/work-1.jpg"
+    //   完整写法（想自定义标题/说明时）：
+    //     { title: "作品图 01", desc: "说明文字（可留空）", file: "assets/img/work-1.jpg" }
+    // 想新增一张图：把文件丢进 assets/img/，在这里数组里加一行路径即可。
     images: [
       { title: "作品图 01", desc: "在这里写这张图的说明。", file: "" },
       { title: "作品图 02", desc: "替换 file 为你的图片路径，例如 assets/img/work-2.jpg", file: "" },
@@ -59,6 +65,10 @@ const SITE_CONFIG = {
       { title: "作品图 06", desc: "", file: "" }
     ],
 
+    // 视频作品（3D 渲染 / 实拍）：同样支持「路径字符串」最简写法，
+    // 例如 "assets/video/shot-1.mp4"（标题自动取文件名）。
+    // 完整写法（需封面/外链时）：
+    //   { title: "视频标题", desc: "说明", src: "assets/video/shot-1.mp4", poster: "assets/img/cover.jpg", link: "https://..." }
     video3d: [
       { title: "3D 渲染视频 01", desc: "Blender / C4D 渲染动画示例。", src: "", poster: "", link: "" },
       { title: "3D 渲染视频 02", desc: "", src: "", poster: "", link: "" }
