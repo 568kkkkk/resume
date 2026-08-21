@@ -10,7 +10,7 @@
  *    site.tagline   首页副标题（一句话介绍）
  *    site.avatar    头像图片路径，例如 "assets/img/avatar.jpg"（留空则不显示）
  *    site.bio       详细介绍（支持用 \n 换行，或用数组分多段）
- *    site.contacts  联系方式，按需增删（type 支持 email / tel / link / wechat）
+ *    site.contacts  联系方式，按需增删（type 支持 email / tel / wechat）
  *
  *    works.images    图片作品列表
  *    works.video3d   3D 渲染视频列表
@@ -43,10 +43,11 @@ const SITE_CONFIG = {
     ]
   },
 
-  // 首页横屏动态图：把视频文件放到 assets/ 下，填这里即可（如 "assets/hero.mp4"）。
-  // 支持 mp4 / webm，也可放一张 GIF 并改用 <img>（见 README）。
+  // 首页横屏动态图：把文件放到 assets/ 下，在这里填路径即可（无需改 HTML）。
+  // 支持 mp4 / webm（自动当视频播放），以及 gif / jpg / png / webp（自动当图片铺满）。
+  // 例如用 GIF：heroMedia: "assets/hero.gif"
   // 留空 "" 时，首页会用内置的 CSS 动态渐变背景兜底。
-  heroMedia: "",
+  heroMedia: "assets/hero.gif",
 
   works: {
     images: [

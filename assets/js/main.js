@@ -107,11 +107,23 @@
       av.hidden = false;
     }
 
-    // 首页动态视频
+    // 首页动态图：按扩展名自动判断用 <video> 还是 <img>（gif/jpg/png/webp 走图片）
     if (C.heroMedia) {
-      const v = document.getElementById("heroMedia");
-      v.src = C.heroMedia;
-      v.style.display = "block";
+      const ext = C.heroMedia.split(".").pop().toLowerCase();
+      const isImage = ["gif", "jpg", "jpeg", "png", "webp"].indexOf(ext) > -1;
+      const el = document.getElementById("heroMedia");
+      if (isImage) {
+        const img = document.createElement("img");
+        img.className = "hero__media";
+        img.id = "heroMedia";
+        img.src = C.heroMedia;
+        img.alt = "";
+        img.style.display = "block";
+        el.replaceWith(img);
+      } else {
+        el.src = C.heroMedia;
+        el.style.display = "block";
+      }
     }
   }
 
