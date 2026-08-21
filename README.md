@@ -25,12 +25,14 @@
 - `contacts` 邮箱 / 电话 / 链接 / 微信等
 
 ### 2. 换首页横屏动态图
-- **用视频**：把视频文件（如 `hero.mp4`）放到 `assets/` 目录，
-  然后在 `data.js` 里设置 `heroMedia: "assets/hero.mp4"`。
-- **用 GIF**：把 GIF 放到 `assets/`，并把 `index.html` 里
-  `<video id="heroMedia">` 整行换成
-  `<img class="hero__media" id="heroMedia" src="assets/hero.gif" style="display:block">`。
+在 `data.js` 顶部的 `heroMedia` 填文件路径即可，**不用改 HTML**（代码会自动识别视频或 GIF）：
+- **用视频**：把视频文件（如 `hero.mp4`）放到 `assets/` 目录，设
+  `heroMedia: "assets/hero.mp4"`。
+- **用 GIF**：把 GIF 文件（如 `hero.gif`）放到 `assets/` 目录，设
+  `heroMedia: "assets/hero.gif"`。
 - **什么都不放**：首页会自动用内置的 CSS 动态渐变背景，也好看。
+> 注意：GIF 文件名要与 `heroMedia` 里填的路径一致；若 GIF 放在
+> `assets/img/` 下，则写 `assets/img/hero.gif`。
 
 ### 3. 加图片作品
 把图片放进 `assets/img/`，在 `works.images` 里加一项：
@@ -72,7 +74,7 @@
 ### 步骤 3：把本地网页推送到仓库
 在你电脑上打开 **Git Bash**（或终端），进入网页目录：
 ```bash
-cd "D:/Ko/网页"
+cd "D:/Ko/web"
 
 git init
 git add .
@@ -107,13 +109,27 @@ git push -u origin main
 
 ## 四、目录结构
 ```
-网页/
+web/
 ├─ index.html            # 页面结构（一般不用改）
 ├─ assets/
 │  ├─ css/style.css      # 样式（主题色在这里改）
 │  ├─ js/data.js         # ★ 你主要改这个：所有内容
 │  ├─ js/main.js         # 渲染逻辑（一般不用改）
-│  ├─ img/               # 放图片作品
-│  └─ video/             # 放视频作品
+│  ├─ img/               # 放图片作品 / 也可放 hero.gif
+│  ├─ video/             # 放视频作品
+│  └─ hero.gif / hero.mp4  # 首页横屏动态图（可选）
 └─ README.md             # 本说明
 ```
+
+---
+
+## 五、媒体文件注意事项
+
+- **图片**：建议用 jpg / png / webp，先压缩缩放，手机端加载更快。
+- **视频**：用 **mp4（H.264）** 兼容性最好；单个文件**超过 100MB** GitHub 会拒绝推送
+  （大视频请用 Git LFS，或传 B站/网盘拿直链填到 `src` / `link`）。
+- **首页动态图**：`heroMedia` 支持 mp4 / webm / gif，填路径即可，无需改 HTML。
+- **视频封面 `poster`**：建议填一张封面图，加载更快、列表更好看；不填则用占位封面。
+- **外链视频**：视频很大时，可把 `src` 填外部嵌入地址，或用 `link` 字段链出去，避免塞进仓库。
+- **提交别忘了文件**：新增图片/视频后一定要 `git add .`（连同 `data.js` 一起），
+  否则只改了登记、文件没上传，页面会显示不出来。
