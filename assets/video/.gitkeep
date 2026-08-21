@@ -1,0 +1,3 @@
+本目录用于放置你的视频作品，例如 render-1.mp4、shot-1.mp4。
+在 assets/js/data.js 的 works.video3d / works.videoReal 里把 src 指向这里。
+首页横屏动态视频可放在 assets/ 根目录（如 assets/hero.mp4），并在 data.js 的 heroMedia 填写路径。

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>个人简历 · 作品集</title>
+  <meta name="description" content="个人简历与作品集网页" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!-- 顶部导航 -->
+  <header class="nav" id="nav">
+    <a class="nav__brand" href="#top" id="navBrand">你的名字</a>
+    <button class="nav__toggle" id="navToggle" aria-label="菜单">☰</button>
+    <nav class="nav__links" id="navLinks">
+      <a href="#about">介绍</a>
+      <a href="#works">作品</a>
+      <a href="#contact">联系</a>
+    </nav>
+  </header>
+
+  <!-- 首页横屏动态区 -->
+  <section class="hero" id="top">
+    <!-- 如果你提供了 heroMedia（视频），下面这行会被 JS 启用并显示 -->
+    <video class="hero__media" id="heroMedia" autoplay loop muted playsinline></video>
+    <!-- 兜底动态背景（CSS 动画，无需素材） -->
+    <div class="hero__bg" aria-hidden="true"></div>
+    <div class="hero__overlay">
+      <p class="hero__title" id="heroTitle">你的名字</p>
+      <p class="hero__subtitle" id="heroTagline">一句话介绍</p>
+      <a class="hero__cta" href="#works">查看作品 ↓</a>
+    </div>
+  </section>
+
+  <!-- 介绍 -->
+  <section class="section" id="about">
+    <h2 class="section__title">介绍</h2>
+    <div class="about">
+      <img class="about__avatar" id="aboutAvatar" alt="头像" hidden />
+      <div class="about__body">
+        <h3 class="about__name" id="aboutName"></h3>
+        <p class="about__role" id="aboutRole"></p>
+        <div class="about__bio" id="aboutBio"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 作品 -->
+  <section class="section" id="works">
+    <h2 class="section__title">作品</h2>
+
+    <!-- 一级 Tab：图片 / 视频 -->
+    <div class="tabs" id="workTabs">
+      <button class="tab is-active" data-target="panel-images">图片</button>
+      <button class="tab" data-target="panel-videos">视频</button>
+    </div>
+
+    <!-- 图片面板 -->
+    <div class="panel is-active" id="panel-images">
+      <div class="grid" id="imageGrid"></div>
+    </div>
+
+    <!-- 视频面板 -->
+    <div class="panel" id="panel-videos">
+      <!-- 二级 Tab：3D 渲染 / 实拍 -->
+      <div class="tabs tabs--sub" id="videoTabs">
+        <button class="tab is-active" data-target="panel-3d">3D 渲染视频</button>
+        <button class="tab" data-target="panel-real">实拍视频</button>
+      </div>
+      <div class="panel is-active" id="panel-3d">
+        <div class="grid" id="video3dGrid"></div>
+      </div>
+      <div class="panel" id="panel-real">
+        <div class="grid" id="videoRealGrid"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 联系 -->
+  <section class="section" id="contact">
+    <h2 class="section__title">联系</h2>
+    <ul class="contacts" id="contactList"></ul>
+  </section>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> <span id="footerName">你的名字</span> · 用心打磨的作品集</p>
+  </footer>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>

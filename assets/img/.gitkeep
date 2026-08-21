@@ -1,0 +1,2 @@
+本目录用于放置你的图片作品，例如 work-1.jpg、work-2.png。
+在 assets/js/data.js 的 works.images 里把 file 指向这里即可。
