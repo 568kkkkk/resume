@@ -27,20 +27,19 @@
 
 const SITE_CONFIG = {
   site: {
-    name: "你的名字",
-    title: "视觉设计师 / 3D 艺术家",
-    tagline: "用光影与画面，讲述值得停留的故事。",
+    name: "LOGON KO",
+    title: "摄影师 / 3D动态渲染师 / 设计师",
+    tagline: "沉浸在KO的视觉世界",
     avatar: "",                       // 例："assets/img/avatar.jpg"
     bio: [
-      "这里写一段关于你的介绍，例如：我是一名专注于视觉表达与动态影像的创作者，擅长 3D 渲染与实拍结合。",
-      "第二段可以写你的经历、擅长的工具（Blender / C4D / AE / 实拍器材等）、以及你追求的风格。",
-      "第三段可以写合作过的内容、获得的成绩，或者你正在寻找的机会。"
+      "我是一名专注于视觉表达与动态影像的创作者，五年从业经验，擅长 3D 渲染与实拍和AIGC结合。",
+      "目前担任公司动态视觉的摄影师，擅长摄影、摄像、布光...从前期到后期输出。",
+      "擅长设备：索尼、佳能等主流设备。软件：剪映、PR、AE、达芬奇、Blender、GPT、CODEX等"
     ],
     contacts: [
-      { type: "email", label: "邮箱", value: "you@example.com", href: "mailto:you@example.com" },
-      { type: "tel",   label: "电话", value: "138-0000-0000", href: "tel:13800000000" },
-      { type: "link",  label: "作品集", value: "behance.net/you", href: "https://www.behance.net/" },
-      { type: "wechat",label: "微信", value: "your_wechat_id", href: "" }
+      { type: "email", label: "邮箱", value: "2073325568@qq.com", href: "mailto:2073325568@qq.com" },
+      { type: "tel",   label: "电话", value: "19977880094", href: "tel:19977880094" },
+      { type: "wechat",label: "微信", value: "Chanyiko6", href: "" }
     ]
   },
 
