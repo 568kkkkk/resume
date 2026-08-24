@@ -1,18 +1,18 @@
 # 个人简历 · 作品集网页
 
-一个暗黑风格、手机/电脑自适应的个人简历与作品集网页。
-**所有内容只需改一个文件 `assets/js/data.js`，无需懂代码。**
+暗黑风格、手机/电脑自适应的个人简历与作品集网页。
+**所有内容只改一个文件 `assets/js/data.js`，无需懂代码。**
 
 ---
 
 ## 一、本地预览
 
-直接双击 `index.html` 用浏览器打开即可看到效果。
-（推荐用 Chrome / Edge / Safari 等现代浏览器）
+直接双击 `index.html` 用浏览器打开。
+（用 Chrome / Edge / Safari 等现代浏览器）
 
 ---
 
-## 二、如何替换成你自己的内容
+## 二、替换成自己的内容
 
 打开 `assets/js/data.js`，按里面的中文注释修改：
 
@@ -59,6 +59,31 @@
 - `poster`：视频封面图（可选）
 - `link`：点击「查看详情」跳转的链接（可选）
 
+### 4.1 零修改添加作品（推荐，像换首图一样方便）
+不想动 `data.js`？把文件直接丢进**对应文件夹**即可，网页会自动扫描渲染：
+
+| 类型 | 丢进哪个文件夹 |
+|---|---|
+| 图片作品 | `assets/img/` |
+| 3D 渲染视频 | `assets/video/3d/` |
+| 实拍视频 | `assets/video/real/` |
+
+步骤：
+1. 把文件放进对应文件夹（文件名即标题，建议用英文/无空格，如 `showreel.mp4`）；
+2. 在网页根目录跑一次扫描（生成清单）：
+   ```bash
+   node generate-manifest.js
+   ```
+3. 提交推送：
+   ```bash
+   git add .
+   git commit -m "新增作品"
+   git push
+   ```
+> 想连 `node generate-manifest.js` 都省掉？安装自动钩子（仅一次）：
+> `cp scripts/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit`
+> 之后每次 `git commit` 会自动重新扫描，你只需「丢文件 → commit → push」。
+
 ### 5. 换主题色
 打开 `assets/css/style.css`，改最上方 `:root` 里的
 `--accent`（主色）和 `--accent-2`（辅助色）即可。
@@ -80,7 +105,7 @@
 5. 点 **Create repository**。
 
 ### 步骤 3：把本地网页推送到仓库
-在你电脑上打开 **Git Bash**（或终端），进入网页目录：
+在电脑上打开 **Git Bash**（或终端），进入网页目录：
 ```bash
 cd "D:/Ko/web"
 
@@ -93,7 +118,7 @@ git branch -M main
 git remote add origin https://github.com/YOUR_USERNAME/resume.git
 git push -u origin main
 ```
-> 首次 push 会让你登录 GitHub，按提示授权即可。
+> 首次 push 会登录 GitHub，按提示授权即可。
 > 如果用了双重验证，需要用 **Personal Access Token** 当密码：
 > GitHub → Settings → Developer settings → Personal access tokens → 生成一个有 `repo` 权限的 token，push 时密码处粘贴它。
 
@@ -119,12 +144,16 @@ git push -u origin main
 ```
 web/
 ├─ index.html            # 页面结构（一般不用改）
+├─ generate-manifest.js  # 作品清单生成器（丢文件后跑一次）
+├─ scripts/pre-commit    # 可选：commit 自动扫描钩子
 ├─ assets/
+│  ├─ manifest.js        # 自动生成的清单（勿手改）
 │  ├─ css/style.css      # 样式（主题色在这里改）
-│  ├─ js/data.js         # ★ 你主要改这个：所有内容
+│  ├─ js/data.js         # 文字/联系方式（作品可不动它）
 │  ├─ js/main.js         # 渲染逻辑（一般不用改）
-│  ├─ img/               # 放图片作品 / 也可放 hero.gif
-│  ├─ video/             # 放视频作品
+│  ├─ img/               # ★ 图片作品丢这里
+│  ├─ video/3d/          # ★ 3D 渲染视频丢这里
+│  ├─ video/real/        # ★ 实拍视频丢这里
 │  └─ hero.gif / hero.mp4  # 首页横屏动态图（可选）
 └─ README.md             # 本说明
 ```

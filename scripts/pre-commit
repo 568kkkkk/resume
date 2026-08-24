@@ -1,0 +1,16 @@
+#!/bin/sh
+# 安装：把本文件复制为 .git/hooks/pre-commit 并加可执行权限
+#   cp scripts/pre-commit .git/hooks/pre-commit
+#   chmod +x .git/hooks/pre-commit
+# 作用：每次 git commit 前自动重新扫描素材文件夹，更新 assets/manifest.js，
+#       并把它加入本次提交，这样「丢文件进文件夹 → commit → push」全自动生效。
+
+echo "[pre-commit] 重新生成作品清单..."
+if command -v node >/dev/null 2>&1; then
+  node "$(git rev-parse --show-toplevel)/generate-manifest.js" || echo "[pre-commit] 警告：清单生成失败，已跳过（不影响本次提交）。"
+else
+  echo "[pre-commit] 未检测到 node，跳过清单生成（不影响本次提交）。"
+fi
+if [ -f "$(git rev-parse --show-toplevel)/assets/manifest.js" ]; then
+  git add assets/manifest.js
+fi

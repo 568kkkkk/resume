@@ -138,22 +138,39 @@
     }
   }
 
-  // 填充作品
+  // 填充作品（优先用自动清单 manifest，并与 data.js 去重合并）
   function fillWorks() {
+    const m = window.MEDIA_MANIFEST;
+    const seen = {};
+
+    function add(list, key, kind, grid) {
+      (list || []).forEach(function (it) {
+        const item = normalizeItem(it, key);
+        const p = item[key] || "";
+        if (p) {
+          if (seen[p]) return; // 同一文件不重复渲染
+          seen[p] = true;
+        }
+        grid.appendChild(mediaCard(item, kind));
+      });
+    }
+
     const imgGrid = document.getElementById("imageGrid");
-    (C.works.images || []).forEach(function (it) {
-      imgGrid.appendChild(mediaCard(normalizeItem(it, "file"), "image"));
-    });
-
     const v3 = document.getElementById("video3dGrid");
-    (C.works.video3d || []).forEach(function (it) {
-      v3.appendChild(mediaCard(normalizeItem(it, "src"), "video"));
-    });
-
     const vr = document.getElementById("videoRealGrid");
-    (C.works.videoReal || []).forEach(function (it) {
-      vr.appendChild(mediaCard(normalizeItem(it, "src"), "video"));
-    });
+
+    // 1) 自动清单（把文件丢进对应文件夹后由 generate-manifest.js 生成）
+    if (m) {
+      add(m.images, "file", "image", imgGrid);
+      add(m.video3d, "src", "video", v3);
+      add(m.videoReal, "src", "video", vr);
+    }
+    // 2) data.js 手动项 / 占位卡片作为补充（与清单去重）
+    if (C.works) {
+      add(C.works.images, "file", "image", imgGrid);
+      add(C.works.video3d, "src", "video", v3);
+      add(C.works.videoReal, "src", "video", vr);
+    }
   }
 
   // 填充联系方式
