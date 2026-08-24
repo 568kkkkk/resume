@@ -70,9 +70,9 @@
 
 步骤：
 1. 把文件放进对应文件夹（文件名即标题，建议用英文/无空格，如 `showreel.mp4`）；
-2. 在网页根目录跑一次扫描（生成清单）：
+2. 在网页根目录跑一次扫描（生成清单，**纯 bash，无需 node**）：
    ```bash
-   node generate-manifest.js
+   bash generate-manifest.sh
    ```
 3. 提交推送：
    ```bash
@@ -80,7 +80,7 @@
    git commit -m "新增作品"
    git push
    ```
-> 想连 `node generate-manifest.js` 都省掉？安装自动钩子（仅一次）：
+> 想连 `bash generate-manifest.sh` 都省掉？安装自动钩子（仅一次）：
 > `cp scripts/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit`
 > 之后每次 `git commit` 会自动重新扫描，你只需「丢文件 → commit → push」。
 
@@ -144,7 +144,7 @@ git push -u origin main
 ```
 web/
 ├─ index.html            # 页面结构（一般不用改）
-├─ generate-manifest.js  # 作品清单生成器（丢文件后跑一次）
+├─ generate-manifest.sh  # 作品清单生成器（纯bash，丢文件后跑一次；无需node）
 ├─ scripts/pre-commit    # 可选：commit 自动扫描钩子
 ├─ assets/
 │  ├─ manifest.js        # 自动生成的清单（勿手改）
